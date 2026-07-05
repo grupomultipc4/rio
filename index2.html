@@ -1,0 +1,1510 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tour Rio de Janeiro 24h</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8CC7A;
+    --teal: #1A6B5E;
+    --teal-dark: #0D4A3F;
+    --cream: #F7F2E8;
+    --sand: #E8DFC8;
+    --dark: #0E1A17;
+    --warm-white: #FDFAF4;
+    --coral: #D65F3C;
+    --sky: #2C7DA0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--dark);
+    color: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ---- HERO ---- */
+  .hero {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to bottom, rgba(14,26,23,0.3) 0%, rgba(14,26,23,0.85) 100%),
+      url('https://images.unsplash.com/photo-1483729558449-99ef09a8c325?w=1600&q=80') center/cover no-repeat;
+    animation: slowZoom 20s ease-in-out infinite alternate;
+  }
+
+  @keyframes slowZoom {
+    from { transform: scale(1); }
+    to   { transform: scale(1.06); }
+  }
+
+  .hero-pattern {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at 20% 80%, rgba(201,168,76,0.15) 0%, transparent 50%),
+                      radial-gradient(circle at 80% 20%, rgba(26,107,94,0.2) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 0 6vw 8vh;
+    width: 100%;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--dark);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 2px;
+    margin-bottom: 1.5rem;
+    animation: fadeSlideUp 0.8s ease both;
+  }
+
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(5rem, 14vw, 14rem);
+    line-height: 0.9;
+    letter-spacing: 0.02em;
+    color: var(--warm-white);
+    animation: fadeSlideUp 0.9s 0.1s ease both;
+  }
+
+  .hero-title span {
+    color: var(--gold);
+    display: block;
+  }
+
+  .hero-meta {
+    display: flex;
+    gap: 3rem;
+    margin-top: 2.5rem;
+    animation: fadeSlideUp 1s 0.25s ease both;
+  }
+
+  .hero-meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .hero-meta-item .label {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+  }
+
+  .hero-meta-item .value {
+    font-size: 0.95rem;
+    color: var(--cream);
+    font-weight: 300;
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 3rem;
+    right: 6vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    z-index: 2;
+    animation: fadeSlideUp 1.2s 0.5s ease both;
+  }
+
+  .hero-scroll span {
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    writing-mode: vertical-rl;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  @keyframes fadeSlideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ---- HOTEL INFO BAR ---- */
+  .hotel-bar {
+    background: var(--gold);
+    color: var(--dark);
+    padding: 1rem 6vw;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .hotel-bar .icon-pin {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+
+  .hotel-bar strong {
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+  }
+
+  .hotel-bar span {
+    font-size: 0.85rem;
+    font-weight: 300;
+  }
+
+  /* ---- SECTION BASE ---- */
+  section {
+    padding: 6rem 6vw;
+  }
+
+  .section-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    line-height: 1.15;
+    color: var(--warm-white);
+    margin-bottom: 3rem;
+  }
+
+  /* ---- MAP INTRO ---- */
+  .distances-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5px;
+    background: rgba(201,168,76,0.15);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .dist-card {
+    background: var(--dark);
+    padding: 2rem 1.8rem;
+    transition: background 0.3s;
+  }
+
+  .dist-card:hover {
+    background: rgba(26,107,94,0.3);
+  }
+
+  .dist-card .dest {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--warm-white);
+    margin-bottom: 0.5rem;
+  }
+
+  .dist-card .dist {
+    font-size: 0.8rem;
+    color: var(--gold);
+    margin-bottom: 0.25rem;
+    letter-spacing: 0.05em;
+  }
+
+  .dist-card .price-range {
+    font-size: 0.85rem;
+    color: rgba(247,242,232,0.6);
+    font-weight: 300;
+  }
+
+  /* ---- STATS ROW ---- */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5px;
+    background: rgba(201,168,76,0.15);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 3rem;
+  }
+
+  .stat-card {
+    background: var(--dark);
+    padding: 1.8rem 1.5rem;
+    text-align: center;
+  }
+
+  .stat-card .stat-value {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.2rem;
+    letter-spacing: 0.02em;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .stat-card .stat-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(247,242,232,0.55);
+    margin-top: 0.6rem;
+  }
+
+  /* ---- MAP ---- */
+  .map-wrap {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 2.5rem;
+    align-items: start;
+  }
+
+  .map-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: 8px;
+    padding: 1.5rem;
+  }
+
+  .map-legend {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+  }
+
+  .leg-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    padding-bottom: 1.1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .leg-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .leg-num {
+    flex-shrink: 0;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--gold);
+    color: var(--dark);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .leg-body .leg-title {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--warm-white);
+    margin-bottom: 2px;
+  }
+
+  .leg-body .leg-sub {
+    font-size: 0.78rem;
+    color: rgba(247,242,232,0.55);
+  }
+
+  .leg-body .leg-km {
+    display: inline-block;
+    margin-top: 4px;
+    font-size: 0.72rem;
+    color: var(--gold-light);
+    letter-spacing: 0.05em;
+  }
+
+  .map-note {
+    font-size: 0.72rem;
+    color: rgba(247,242,232,0.4);
+    margin-top: 1rem;
+    line-height: 1.6;
+    font-style: italic;
+  }
+
+  @media (max-width: 900px) {
+    .map-wrap { grid-template-columns: 1fr; }
+    .stats-row { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* ---- BUDGET WINDOW BOX ---- */
+  .budget-window {
+    background: linear-gradient(135deg, rgba(26,107,94,0.18), rgba(201,168,76,0.08));
+    border: 1px solid rgba(201,168,76,0.25);
+    border-radius: 8px;
+    padding: 2.5rem;
+    margin-top: 3rem;
+  }
+
+  .budget-window .bw-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: var(--warm-white);
+    margin-bottom: 0.4rem;
+  }
+
+  .budget-window .bw-sub {
+    font-size: 0.8rem;
+    color: rgba(247,242,232,0.55);
+    margin-bottom: 1.8rem;
+  }
+
+  .bw-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+
+  .bw-item .bw-label {
+    font-size: 0.62rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .bw-item .bw-value {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.7rem;
+    color: var(--warm-white);
+  }
+
+  .bw-item .bw-value small {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    color: rgba(247,242,232,0.5);
+  }
+
+  @media (max-width: 700px) {
+    .bw-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* ---- TIMELINE ---- */
+  .timeline {
+    position: relative;
+    padding-left: 0;
+  }
+
+  .timeline-line {
+    position: absolute;
+    left: 3.5rem;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--gold), rgba(201,168,76,0.1));
+  }
+
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 7rem 1fr;
+    gap: 2rem;
+    margin-bottom: 0;
+    position: relative;
+  }
+
+  .timeline-item + .timeline-item {
+    margin-top: 0;
+  }
+
+  .timeline-time-col {
+    text-align: right;
+    padding-top: 2.5rem;
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .timeline-time {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 0.05em;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .timeline-ampm {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: rgba(201,168,76,0.6);
+    text-transform: uppercase;
+  }
+
+  .timeline-dot {
+    position: absolute;
+    right: -1.85rem;
+    top: 2.75rem;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--gold);
+    border: 2px solid var(--dark);
+    box-shadow: 0 0 0 4px rgba(201,168,76,0.2);
+  }
+
+  .timeline-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(201,168,76,0.12);
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 1.5rem 0;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .timeline-card:hover {
+    border-color: rgba(201,168,76,0.35);
+    transform: translateX(6px);
+  }
+
+  .card-img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+    filter: saturate(0.9) brightness(0.9);
+    transition: filter 0.4s;
+  }
+
+  .timeline-card:hover .card-img {
+    filter: saturate(1.1) brightness(1);
+  }
+
+  .card-body {
+    padding: 2rem 2.5rem;
+  }
+
+  .card-tag {
+    display: inline-block;
+    padding: 3px 12px;
+    border-radius: 2px;
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .tag-transport { background: rgba(44,125,160,0.2); color: #6BC8E8; border: 1px solid rgba(44,125,160,0.3); }
+  .tag-attraction { background: rgba(26,107,94,0.25); color: #6EDFC4; border: 1px solid rgba(26,107,94,0.35); }
+  .tag-food { background: rgba(214,95,60,0.2); color: #F0A07A; border: 1px solid rgba(214,95,60,0.3); }
+  .tag-leisure { background: rgba(201,168,76,0.2); color: var(--gold-light); border: 1px solid rgba(201,168,76,0.3); }
+
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--warm-white);
+    margin-bottom: 0.75rem;
+    line-height: 1.2;
+  }
+
+  .card-desc {
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: rgba(247,242,232,0.7);
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+  }
+
+  .card-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  .detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .detail-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+  }
+
+  .detail-value {
+    font-size: 0.88rem;
+    color: var(--cream);
+    font-weight: 400;
+  }
+
+  .detail-value a {
+    color: #6BC8E8;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(107,200,232,0.3);
+    transition: border-color 0.2s;
+  }
+
+  .detail-value a:hover {
+    border-color: #6BC8E8;
+  }
+
+  .uber-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 100px;
+    padding: 8px 16px;
+    font-size: 0.8rem;
+    color: var(--cream);
+    margin-top: 1rem;
+  }
+
+  .uber-chip .uber-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #1DB954;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(29,185,84,0.4); }
+    50% { box-shadow: 0 0 0 6px rgba(29,185,84,0); }
+  }
+
+  /* ---- COSTS TABLE ---- */
+  .costs-section {
+    background: rgba(26,107,94,0.08);
+    border-top: 1px solid rgba(201,168,76,0.1);
+    border-bottom: 1px solid rgba(201,168,76,0.1);
+  }
+
+  .costs-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+
+  .cost-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .cost-table th {
+    text-align: left;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    padding: 0 0 1rem;
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+    font-weight: 600;
+  }
+
+  .cost-table td {
+    padding: 0.85rem 0;
+    font-size: 0.88rem;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    color: rgba(247,242,232,0.8);
+  }
+
+  .cost-table td:last-child {
+    text-align: right;
+    color: var(--cream);
+    font-weight: 500;
+  }
+
+  .cost-table tr.total td {
+    color: var(--gold);
+    font-weight: 700;
+    font-size: 1rem;
+    border-top: 1px solid rgba(201,168,76,0.3);
+    border-bottom: none;
+    padding-top: 1.2rem;
+  }
+
+  /* ---- CONTACTS ---- */
+  .contacts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .contact-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(201,168,76,0.12);
+    border-radius: 8px;
+    padding: 2rem;
+    transition: border-color 0.3s;
+  }
+
+  .contact-card:hover {
+    border-color: rgba(201,168,76,0.3);
+  }
+
+  .contact-card .name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--warm-white);
+    margin-bottom: 1.2rem;
+  }
+
+  .contact-line {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    margin-bottom: 1rem;
+  }
+
+  .contact-line .c-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+  }
+
+  .contact-line .c-val {
+    font-size: 0.85rem;
+    color: rgba(247,242,232,0.75);
+  }
+
+  .contact-line .c-val a {
+    color: #6BC8E8;
+    text-decoration: none;
+  }
+
+  /* ---- TIPS ---- */
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .tip-card {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(201,168,76,0.1);
+    border-left: 3px solid var(--gold);
+    border-radius: 4px;
+    padding: 1.8rem;
+  }
+
+  .tip-card .tip-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem;
+    color: rgba(201,168,76,0.15);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .tip-card .tip-title {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--cream);
+    margin-bottom: 0.5rem;
+  }
+
+  .tip-card .tip-text {
+    font-size: 0.82rem;
+    line-height: 1.7;
+    color: rgba(247,242,232,0.6);
+    font-weight: 300;
+  }
+
+  /* ---- FOOTER ---- */
+  footer {
+    background: rgba(0,0,0,0.5);
+    border-top: 1px solid rgba(201,168,76,0.15);
+    padding: 3rem 6vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: gap;
+    gap: 1rem;
+  }
+
+  footer .f-brand {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+  }
+
+  footer .f-note {
+    font-size: 0.75rem;
+    color: rgba(247,242,232,0.35);
+    max-width: 400px;
+    line-height: 1.6;
+  }
+
+  .emerg-bar {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-top: 0;
+  }
+
+  .emerg-item .e-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--coral);
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+
+  .emerg-item .e-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    color: var(--cream);
+    letter-spacing: 0.05em;
+  }
+
+  /* Divider */
+  .divider {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(to right, var(--gold), transparent);
+    margin-bottom: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    .timeline-item { grid-template-columns: 5.5rem 1fr; gap: 1rem; }
+    .timeline-line { left: 2.8rem; }
+    .costs-grid { grid-template-columns: 1fr; }
+    .hero-meta { flex-direction: column; gap: 1rem; }
+    footer { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-pattern"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Tour Exclusivo 24 Horas</div>
+    <h1 class="hero-title">Rio de<span>Janeiro</span></h1>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <span class="label">Partida</span>
+        <span class="value">Rua do Catete, 233</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="label">Grupo</span>
+        <span class="value">3 Personas</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="label">Transporte</span>
+        <span class="value">Uber</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="label">Duracion</span>
+        <span class="value">07:30 – 22:00 hs</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</div>
+
+<!-- HOTEL BAR -->
+<div class="hotel-bar">
+  <svg class="icon-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+    <circle cx="12" cy="9" r="2.5"/>
+  </svg>
+  <strong>Su alojamiento:</strong>
+  <span>Rua do Catete, 233, Catete, Rio de Janeiro, CEP 22220-001</span>
+</div>
+
+<!-- DISTANCES -->
+<section>
+  <div class="section-label">Ventaja Geografica</div>
+  <h2 class="section-title">Catete: Centro Estrategico<br>para su Recorrido</h2>
+  <div class="divider"></div>
+  <div class="distances-grid">
+    <div class="dist-card">
+      <div class="dest">Cristo Redentor</div>
+      <div class="dist">2.5 km de su hotel</div>
+      <div class="price-range">Uber: R$12 – R$18</div>
+    </div>
+    <div class="dist-card">
+      <div class="dest">Lapa / Selaron</div>
+      <div class="dist">3.0 km de su hotel</div>
+      <div class="price-range">Uber: R$12 – R$20</div>
+    </div>
+    <div class="dist-card">
+      <div class="dest">Pan de Azucar</div>
+      <div class="dist">5.0 km de su hotel</div>
+      <div class="price-range">Uber: R$18 – R$28</div>
+    </div>
+    <div class="dist-card">
+      <div class="dest">Copacabana</div>
+      <div class="dist">4.0 km de su hotel</div>
+      <div class="price-range">Uber: R$15 – R$22</div>
+    </div>
+    <div class="dist-card">
+      <div class="dest">Ipanema</div>
+      <div class="dist">7.0 km de su hotel</div>
+      <div class="price-range">Uber: R$20 – R$30</div>
+    </div>
+  </div>
+</section>
+
+<!-- MAP + KM -->
+<section style="background: rgba(0,0,0,0.15);">
+  <div class="section-label">Recorrido y Kilometraje</div>
+  <h2 class="section-title">Mapa del Dia<br>07:00 – 19:00 hs</h2>
+  <div class="divider"></div>
+
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-value">12 km</div>
+      <div class="stat-label">Distancia total recorrida</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">3</div>
+      <div class="stat-label">Traslados en Uber</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">~40 min</div>
+      <div class="stat-label">Tiempo total en trayectos</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">R$58</div>
+      <div class="stat-label">Transporte (grupo 3)</div>
+    </div>
+  </div>
+
+  <div class="map-wrap">
+    <div class="map-card">
+      <svg viewBox="0 0 640 520" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto;">
+        <!-- coastline hint -->
+        <path d="M 40 480 Q 200 440 260 500 Q 340 470 400 500 Q 480 460 600 500" stroke="rgba(44,125,160,0.35)" stroke-width="3" fill="none"/>
+        <text x="420" y="500" fill="#6BC8E8" font-family="DM Sans, sans-serif" font-size="11" letter-spacing="2">OCEANO ATLANTICO</text>
+
+        <!-- route lines -->
+        <path d="M 120 430 L 230 300" stroke="var(--gold)" stroke-width="2" stroke-dasharray="6 5" fill="none"/>
+        <path d="M 230 300 L 200 150" stroke="var(--gold)" stroke-width="2" stroke-dasharray="6 5" fill="none"/>
+        <path d="M 200 150 L 470 230" stroke="var(--gold)" stroke-width="2" stroke-dasharray="6 5" fill="none"/>
+
+        <!-- km labels -->
+        <text x="150" y="375" fill="#E8CC7A" font-family="DM Sans, sans-serif" font-size="13" font-weight="600">2.5 km</text>
+        <text x="188" y="225" fill="#E8CC7A" font-family="DM Sans, sans-serif" font-size="13" font-weight="600">3.5 km</text>
+        <text x="330" y="185" fill="#E8CC7A" font-family="DM Sans, sans-serif" font-size="13" font-weight="600">6.0 km</text>
+
+        <!-- 1 Hotel -->
+        <circle cx="120" cy="430" r="11" fill="var(--gold)"/>
+        <text x="120" y="435" text-anchor="middle" fill="#0E1A17" font-family="Bebas Neue, sans-serif" font-size="13">1</text>
+        <text x="140" y="425" fill="#FDFAF4" font-family="DM Sans, sans-serif" font-size="12" font-weight="600">Hotel · Catete</text>
+        <text x="140" y="442" fill="rgba(247,242,232,0.5)" font-family="DM Sans, sans-serif" font-size="10">07:30 salida</text>
+
+        <!-- 2 Corcovado -->
+        <circle cx="230" cy="300" r="11" fill="#6EDFC4"/>
+        <text x="230" y="305" text-anchor="middle" fill="#0E1A17" font-family="Bebas Neue, sans-serif" font-size="13">2</text>
+        <text x="250" y="295" fill="#FDFAF4" font-family="DM Sans, sans-serif" font-size="12" font-weight="600">Cristo Redentor</text>
+        <text x="250" y="312" fill="rgba(247,242,232,0.5)" font-family="DM Sans, sans-serif" font-size="10">08:30 – 11:00</text>
+
+        <!-- 3 Lapa -->
+        <circle cx="200" cy="150" r="11" fill="#6EDFC4"/>
+        <text x="200" y="155" text-anchor="middle" fill="#0E1A17" font-family="Bebas Neue, sans-serif" font-size="13">3</text>
+        <text x="220" y="140" fill="#FDFAF4" font-family="DM Sans, sans-serif" font-size="12" font-weight="600">Selaron + Almuerzo</text>
+        <text x="220" y="157" fill="rgba(247,242,232,0.5)" font-family="DM Sans, sans-serif" font-size="10">12:00 – 14:30 (Sta. Teresa a pie)</text>
+
+        <!-- 4 Urca -->
+        <circle cx="470" cy="230" r="11" fill="#F0A07A"/>
+        <text x="470" y="235" text-anchor="middle" fill="#0E1A17" font-family="Bebas Neue, sans-serif" font-size="13">4</text>
+        <text x="490" y="225" fill="#FDFAF4" font-family="DM Sans, sans-serif" font-size="12" font-weight="600">Pao de Acucar</text>
+        <text x="490" y="242" fill="rgba(247,242,232,0.5)" font-family="DM Sans, sans-serif" font-size="10">15:00 – 18:00</text>
+
+        <!-- dotted continuation to Copacabana (after 19h, not counted) -->
+        <path d="M 470 230 L 400 400" stroke="rgba(214,95,60,0.4)" stroke-width="2" stroke-dasharray="2 5" fill="none"/>
+        <circle cx="400" cy="400" r="9" fill="rgba(214,95,60,0.5)"/>
+        <text x="400" y="404" text-anchor="middle" fill="#0E1A17" font-family="Bebas Neue, sans-serif" font-size="11">5</text>
+        <text x="415" y="405" fill="rgba(247,242,232,0.45)" font-family="DM Sans, sans-serif" font-size="10">Copacabana · cena 19:00 (fuera de este tramo)</text>
+      </svg>
+    </div>
+
+    <div class="map-legend">
+      <div class="leg-item">
+        <div class="leg-num">1→2</div>
+        <div class="leg-body">
+          <div class="leg-title">Catete &rarr; Cosme Velho</div>
+          <div class="leg-sub">Uber R$15 (grupo) · 5-8 min</div>
+          <span class="leg-km">2.5 km</span>
+        </div>
+      </div>
+      <div class="leg-item">
+        <div class="leg-num">2→3</div>
+        <div class="leg-body">
+          <div class="leg-title">Cosme Velho &rarr; Lapa</div>
+          <div class="leg-sub">Uber R$18 (grupo)</div>
+          <span class="leg-km">3.5 km</span>
+        </div>
+      </div>
+      <div class="leg-item">
+        <div class="leg-num">3→4</div>
+        <div class="leg-body">
+          <div class="leg-title">Lapa &rarr; Urca (Pao de Acucar)</div>
+          <div class="leg-sub">Uber R$25 (grupo) · 15-20 min</div>
+          <span class="leg-km">6.0 km</span>
+        </div>
+      </div>
+      <div class="map-note">
+        Distancias aproximadas por trayecto en auto. El almuerzo en Santa Teresa se realiza a pie desde Lapa, sin costo adicional de transporte. El tramo Urca &rarr; Copacabana (19:00 hs en adelante) corresponde a la cena nocturna y no esta incluido en este calculo de 07:00 a 19:00 hs.
+      </div>
+    </div>
+  </div>
+
+  <div class="budget-window">
+    <div class="bw-title">Presupuesto Final · 07:00 a 19:00 hs</div>
+    <div class="bw-sub">Desayuno, Cristo Redentor, Escadaria Selaron, almuerzo y Pao de Acucar (antes de la cena de las 19:00 hs)</div>
+    <div class="bw-grid">
+      <div class="bw-item">
+        <div class="bw-label">Transporte (grupo 3)</div>
+        <div class="bw-value">R$58</div>
+      </div>
+      <div class="bw-item">
+        <div class="bw-label">Actividades / comidas (p/persona)</div>
+        <div class="bw-value">R$340<small> – R$435</small></div>
+      </div>
+      <div class="bw-item">
+        <div class="bw-label">Total por persona</div>
+        <div class="bw-value">R$360<small> – R$455</small></div>
+      </div>
+      <div class="bw-item">
+        <div class="bw-label">Total grupo (3 personas)</div>
+        <div class="bw-value">R$1.080<small> – R$1.360</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section style="background: rgba(0,0,0,0.25); padding-top: 6rem; padding-bottom: 6rem;">
+  <div class="section-label">Itinerario Completo</div>
+  <h2 class="section-title">Su Dia en Rio,<br>Hora por Hora</h2>
+  <div class="divider"></div>
+
+  <div class="timeline">
+    <div class="timeline-line"></div>
+
+    <!-- 07:30 Desayuno -->
+    <div class="timeline-item">
+      <div class="timeline-time-col">
+        <div class="timeline-time">07:30</div>
+        <div class="timeline-ampm">AM</div>
+        <div class="timeline-dot"></div>
+      </div>
+      <div>
+        <div class="timeline-card">
+          <img class="card-img" src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800&q=80" alt="Desayuno">
+          <div class="card-body">
+            <span class="card-tag tag-food">Desayuno</span>
+            <div class="card-title">Padaria do Catete o Largo do Machado</div>
+            <p class="card-desc">Comience el dia con un cafe da manha tipicamente brasileiro. El Largo do Machado esta a tan solo 5 minutos a pie de su hotel. Pruebe el pao de queijo y el cafe com leite para una experiencia autentica.</p>
+            <div class="card-details">
+              <div class="detail-item">
+                <span class="detail-label">Costo por persona</span>
+                <span class="detail-value">R$20 – R$35</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Distancia</span>
+                <span class="detail-value">5 min a pie</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Duracion</span>
+                <span class="detail-value">45 minutos</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 08:30 Cristo -->
+    <div class="timeline-item">
+      <div class="timeline-time-col">
+        <div class="timeline-time">08:30</div>
+        <div class="timeline-ampm">AM</div>
+        <div class="timeline-dot"></div>
+      </div>
+      <div>
+        <div class="timeline-card">
+          <img class="card-img" src="https://images.unsplash.com/photo-1552537376-3abf35237215?w=800&q=80" alt="Cristo Redentor">
+          <div class="card-body">
+            <span class="card-tag tag-attraction">Atraccion Principal</span>
+            <div class="card-title">Cristo Redentor</div>
+            <p class="card-desc">La maravilla del mundo que domina el Cerro Corcovado. Salga temprano para evitar las multitudes y disfrutar de la mejor luz de la manana. Desde la cumbre tendra una vista panoramica de los 360 grados de toda la ciudad.</p>
+            <div class="card-details">
+              <div class="detail-item">
+                <span class="detail-label">Entrada por persona</span>
+                <span class="detail-value">R$120 – R$160</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Horario</span>
+                <span class="detail-value">08:00 – 19:00 hs</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Duracion</span>
+                <span class="detail-value">2.5 – 3 horas</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Telefono</span>
+                <span class="detail-value"><a href="tel:+552125588701">+55 (21) 2558-8701</a></span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Reservas Online</span>
+                <span class="detail-value"><a href="https://www.tremdocorcovado.rio" target="_blank">tremdocorcovado.rio</a></span>
+              </div>
+            </div>
+            <div class="uber-chip">
+              <div class="uber-dot"></div>
+              Uber desde Catete: R$12 – R$18 aprox. (5-8 min)
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 12:00 Selaron -->
+    <div class="timeline-item">
+      <div class="timeline-time-col">
+        <div class="timeline-time">12:00</div>
+        <div class="timeline-ampm">PM</div>
+        <div class="timeline-dot"></div>
+      </div>
+      <div>
+        <div class="timeline-card">
+          <img class="card-img" src="https://images.unsplash.com/photo-1619546813926-a78fa6372cd2?w=800&q=80" alt="Escadaria Selaron">
+          <div class="card-body">
+            <span class="card-tag tag-attraction">Arte y Cultura</span>
+            <div class="card-title">Escadaria Selaron + Arcos da Lapa</div>
+            <p class="card-desc">La iconica escalera revestida de mas de 250 azulejos coloridos del artista chileno Jorge Selaronra, un monumento al amor por Rio. A pocos pasos, los majestuosos Arcos da Lapa del siglo XVIII completan una visita cultural imperdible.</p>
+            <div class="card-details">
+              <div class="detail-item">
+                <span class="detail-label">Entrada</span>
+                <span class="detail-value">Gratuita</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Horario</span>
+                <span class="detail-value">Abierto todo el dia</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Duracion</span>
+                <span class="detail-value">45 – 60 min</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Direccion</span>
+                <span class="detail-value">Rua Joaquim Silva, Lapa</span>
+              </div>
+            </div>
+            <div class="uber-chip">
+              <div class="uber-dot"></div>
+              Uber desde Cosme Velho: R$15 – R$22 aprox.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 13:00 Almuerzo -->
+    <div class="timeline-item">
+      <div class="timeline-time-col">
+        <div class="timeline-time">13:00</div>
+        <div class="timeline-ampm">PM</div>
+        <div class="timeline-dot"></div>
+      </div>
+      <div>
+        <div class="timeline-card">
+          <img class="card-img" src="https://images.unsplash.com/photo-1547592180-85f173990554?w=800&q=80" alt="Almuerzo">
+          <div class="card-body">
+            <span class="card-tag tag-food">Almuerzo</span>
+            <div class="card-title">Restaurante en Lapa o Santa Teresa</div>
+            <p class="card-desc">Lapa y Santa Teresa ofrecen una vibrante escena gastronomica. Pruebe la picanha al punto, la feijoada completa (jueves y sabados tradicionales) o los frutos del mar frescos. El bairro de Santa Teresa, bohemio y artistico, ofrece vistas y ambiente unicos.</p>
+            <div class="card-details">
+              <div class="detail-item">
+                <span class="detail-label">Costo por persona</span>
+                <span class="detail-value">R$50 – R$90</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Duracion</span>
+                <span class="detail-value">1.5 horas</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Sugerencia</span>
+                <span class="detail-value">Bar do Mineiro (Santa Teresa)</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Telefono sugerido</span>
+                <span class="detail-value"><a href="tel:+552122212227">+55 (21) 2221-2227</a></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 15:00 Pan de Azucar -->
+    <div class="timeline-item">
+      <div class="timeline-time-col">
+        <div class="timeline-time">15:00</div>
+        <div class="timeline-ampm">PM</div>
+        <div class="timeline-dot"></div>
+      </div>
+      <div>
+        <div class="timeline-card">
+          <img class="card-img" src="https://images.unsplash.com/photo-1518639192441-8fce0a366e2e?w=800&q=80" alt="Pan de Azucar">
+          <div class="card-body">
+            <span class="card-tag tag-attraction">Vista Panoramica</span>
+            <div class="card-title">Pan de Azucar (Bondinho)</div>
+            <p class="card-desc">Suba en el famoso teleferico Bondinho al icono de Rio. Con 396 metros de altura, ofrece vistas incomparables de la Baia de Guanabara, el Cristo Redentor y las playas. Llegue a las 15:00 para ver el paisaje de dia y quedarse hasta el atardecer.</p>
+            <div class="card-details">
+              <div class="detail-item">
+                <span class="detail-label">Entrada por persona</span>
+                <span class="detail-value">R$150 aprox.</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Horario</span>
+                <span class="detail-value">08:00 – 21:00 hs</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Duracion</span>
+                <span class="detail-value">2.5 – 3 horas</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Telefono</span>
+                <span class="detail-value"><a href="tel:+552125461400">+55 (21) 2546-8433</a></span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Reservas</span>
+                <span class="detail-value"><a href="https://www.bondinho.com.br" target="_blank">bondinho.com.br</a></span>
+              </div>
+            </div>
+            <div class="uber-chip">
+              <div class="uber-dot"></div>
+              Uber desde Lapa: R$20 – R$30 aprox. (15-20 min)
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 19:00 Cena -->
+    <div class="timeline-item">
+      <div class="timeline-time-col">
+        <div class="timeline-time">19:00</div>
+        <div class="timeline-ampm">PM</div>
+        <div class="timeline-dot"></div>
+      </div>
+      <div>
+        <div class="timeline-card">
+          <img class="card-img" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80" alt="Cena">
+          <div class="card-body">
+            <span class="card-tag tag-food">Cena</span>
+            <div class="card-title">Cena en Copacabana o Ipanema</div>
+            <p class="card-desc">Termine el dia con una cena frente al oceano en uno de los restaurantes de la orla. Ipanema ofrece opciones mas sofisticadas, mientras que Copacabana tiene mas variedad de precios. Pida una caipirinha y brinde por un dia extraordinario en Rio.</p>
+            <div class="card-details">
+              <div class="detail-item">
+                <span class="detail-label">Costo por persona</span>
+                <span class="detail-value">R$80 – R$150</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Duracion</span>
+                <span class="detail-value">1.5 – 2 horas</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Sugerencia</span>
+                <span class="detail-value">Restaurante Cipriani (Copacabana Palace)</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Telefono sugerido</span>
+                <span class="detail-value"><a href="tel:+552125484369">+55 (21) 2548-4369</a></span>
+              </div>
+            </div>
+            <div class="uber-chip">
+              <div class="uber-dot"></div>
+              Uber desde Urca: R$18 – R$25 aprox.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 21:30 Paseo -->
+    <div class="timeline-item">
+      <div class="timeline-time-col">
+        <div class="timeline-time">21:30</div>
+        <div class="timeline-ampm">PM</div>
+        <div class="timeline-dot"></div>
+      </div>
+      <div>
+        <div class="timeline-card">
+          <img class="card-img" src="https://images.unsplash.com/photo-1516306580123-e6e52b1b7b5f?w=800&q=80" alt="Noche en Rio">
+          <div class="card-body">
+            <span class="card-tag tag-leisure">Noche</span>
+            <div class="card-title">Paseo Nocturno y Regreso a Catete</div>
+            <p class="card-desc">Disfrute del calçadao de Copacabana o Ipanema, iluminado y lleno de vida nocturna. Tome un trago en un bar de la orla. Al terminar, solicite un Uber de regreso a Rua do Catete para cerrar el dia de forma comoda y segura.</p>
+            <div class="card-details">
+              <div class="detail-item">
+                <span class="detail-label">Costo por persona</span>
+                <span class="detail-value">R$20 – R$50 (bebidas)</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Regreso a hotel</span>
+                <span class="detail-value">Uber R$15 – R$22</span>
+              </div>
+            </div>
+            <div class="uber-chip">
+              <div class="uber-dot"></div>
+              Uber Copacabana a Catete: R$15 – R$22 aprox.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- COSTS -->
+<section class="costs-section">
+  <div class="section-label">Presupuesto Estimado</div>
+  <h2 class="section-title">Resumen de Costos</h2>
+  <div class="divider"></div>
+  <p style="font-size:0.85rem; color:rgba(247,242,232,0.5); margin-top:-2rem; margin-bottom:2.5rem; max-width:640px;">Este resumen cubre el dia completo (07:30 – 22:00 hs). Para el detalle acotado a la franja 07:00 – 19:00 hs, ver el bloque "Presupuesto Final" junto al mapa del recorrido, mas arriba.</p>
+  <div class="costs-grid">
+    <div>
+      <table class="cost-table">
+        <thead>
+          <tr>
+            <th>Trayecto en Uber</th>
+            <th>Costo (grupo 3)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Catete &rarr; Cosme Velho</td><td>R$15</td></tr>
+          <tr><td>Cosme Velho &rarr; Lapa</td><td>R$18</td></tr>
+          <tr><td>Lapa &rarr; Urca</td><td>R$25</td></tr>
+          <tr><td>Urca &rarr; Copacabana</td><td>R$22</td></tr>
+          <tr><td>Copacabana &rarr; Catete</td><td>R$18</td></tr>
+          <tr class="total"><td>Total Uber (3 personas)</td><td>R$98 – R$130</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <table class="cost-table">
+        <thead>
+          <tr>
+            <th>Actividad</th>
+            <th>Costo p/persona</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Desayuno</td><td>R$20 – R$35</td></tr>
+          <tr><td>Tren Corcovado + Cristo</td><td>R$120 – R$160</td></tr>
+          <tr><td>Escadaria Selaron</td><td>Gratuito</td></tr>
+          <tr><td>Almuerzo</td><td>R$50 – R$90</td></tr>
+          <tr><td>Pan de Azucar (Bondinho)</td><td>R$150</td></tr>
+          <tr><td>Cena + Noche</td><td>R$100 – R$200</td></tr>
+          <tr class="total"><td>Total por persona</td><td>R$440 – R$635</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTS -->
+<section>
+  <div class="section-label">Informacion de Contacto</div>
+  <h2 class="section-title">Telefonos y Reservas</h2>
+  <div class="divider"></div>
+  <div class="contacts-grid">
+    <div class="contact-card">
+      <div class="name">Tren do Corcovado (Cristo Redentor)</div>
+      <div class="contact-line">
+        <span class="c-label">Telefono</span>
+        <span class="c-val"><a href="tel:+552125588701">+55 (21) 2558-8701</a></span>
+      </div>
+      <div class="contact-line">
+        <span class="c-label">Horario de Atencion</span>
+        <span class="c-val">08:00 – 19:00 hs</span>
+      </div>
+      <div class="contact-line">
+        <span class="c-label">Sitio Web</span>
+        <span class="c-val"><a href="https://www.tremdocorcovado.rio" target="_blank">tremdocorcovado.rio</a></span>
+      </div>
+      <div class="contact-line">
+        <span class="c-label">Recomendacion</span>
+        <span class="c-val">Comprar entradas online con 2-3 dias de anticipacion</span>
+      </div>
+    </div>
+    <div class="contact-card">
+      <div class="name">Bondinho Pao de Acucar</div>
+      <div class="contact-line">
+        <span class="c-label">Telefono</span>
+        <span class="c-val"><a href="tel:+552125468433">+55 (21) 2546-8433</a></span>
+      </div>
+      <div class="contact-line">
+        <span class="c-label">Horario</span>
+        <span class="c-val">08:00 – 21:00 hs (ultimo acceso 20:00)</span>
+      </div>
+      <div class="contact-line">
+        <span class="c-label">Sitio Web</span>
+        <span class="c-val"><a href="https://www.bondinho.com.br" target="_blank">bondinho.com.br</a></span>
+      </div>
+      <div class="contact-line">
+        <span class="c-label">Direccion</span>
+        <span class="c-val">Praia Vermelha, Urca</span>
+      </div>
+    </div>
+    <div class="contact-card">
+      <div class="name">Bar do Mineiro (Almuerzo)</div>
+      <div class="contact-line">
+        <span class="c-label">Telefono</span>
+        <span class="c-val"><a href="tel:+552122212227">+55 (21) 2221-2227</a></span>
+      </div>
+      <div class="contact-line">
+        <span class="c-label">Horario</span>
+        <span class="c-val">11:00 – 23:00 hs</span>
+      </div>
+      <div class="contact-line">
+        <span class="c-label">Direccion</span>
+        <span class="c-val">Rua Paschoal Carlos Magno, 99 – Santa Teresa</span>
+      </div>
+      <div class="contact-line">
+        <span class="c-label">Especialidad</span>
+        <span class="c-val">Feijoada, Picanha, cocina mineira tradicional</span>
+      </div>
+    </div>
+    <div class="contact-card">
+      <div class="name">Uber Rio de Janeiro</div>
+      <div class="contact-line">
+        <span class="c-label">Disponibilidad</span>
+        <span class="c-val">24 horas, 7 dias a la semana</span>
+      </div>
+      <div class="contact-line">
+        <span class="c-label">App</span>
+        <span class="c-val"><a href="https://www.uber.com" target="_blank">uber.com</a></span>
+      </div>
+      <div class="contact-line">
+        <span class="c-label">Soporte en App</span>
+        <span class="c-val">Menu &gt; Ayuda &gt; Soporte</span>
+      </div>
+      <div class="contact-line">
+        <span class="c-label">Categoria Recomendada</span>
+        <span class="c-val">UberX (hasta 4 pasajeros)</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIPS -->
+<section style="background: rgba(0,0,0,0.3); padding-top:5rem; padding-bottom:5rem;">
+  <div class="section-label">Consejos Esenciales</div>
+  <h2 class="section-title">Antes de Salir</h2>
+  <div class="divider"></div>
+  <div class="tips-grid">
+    <div class="tip-card">
+      <div class="tip-num">01</div>
+      <div class="tip-title">Entradas Online</div>
+      <p class="tip-text">Compre sus entradas para el Cristo Redentor y el Pan de Azucar con 2-3 dias de anticipacion. En temporada alta las filas superan las 2 horas si no tiene reserva.</p>
+    </div>
+    <div class="tip-card">
+      <div class="tip-num">02</div>
+      <div class="tip-title">Salir Temprano</div>
+      <p class="tip-text">El Cristo Redentor es visita imprescindible de manana. La luz es mejor, hay menos turistas y las nubes son menos frecuentes entre 08:00 y 11:00.</p>
+    </div>
+    <div class="tip-card">
+      <div class="tip-num">03</div>
+      <div class="tip-title">Uber vs Trafico</div>
+      <p class="tip-text">Evite solicitar Uber en hora pico (07:30-09:00 y 17:00-19:30). El metro de Catete es una excelente alternativa para trayectos hacia el centro.</p>
+    </div>
+    <div class="tip-card">
+      <div class="tip-num">04</div>
+      <div class="tip-title">Efectivo en Reales</div>
+      <p class="tip-text">Lleve R$150-200 en efectivo para quioscos de playa, propinas y pequenas compras. Muchos vendedores ambulantes no aceptan tarjeta.</p>
+    </div>
+    <div class="tip-card">
+      <div class="tip-num">05</div>
+      <div class="tip-title">Seguridad</div>
+      <p class="tip-text">Guarde el telefono en el bolsillo cuando no lo use. Solicite el Uber desde el interior del local o la recepcion del hotel, no desde la calle.</p>
+    </div>
+    <div class="tip-card">
+      <div class="tip-num">06</div>
+      <div class="tip-title">Metro Catete</div>
+      <p class="tip-text">La estacion Catete (Linea 1) esta a 2 minutos a pie de su hotel. Conecta directamente con Lapa, Centro y la zona sul. Ticket: R$5,80 por persona.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="f-brand">RIO 24H</div>
+    <p class="f-note">Itinerario preparado para 3 personas con salida desde Rua do Catete, 233. Precios aproximados en Reales Brasilenoss (BRL). Tarifas Uber sujetas a variacion por demanda y trafico.</p>
+  </div>
+  <div>
+    <div style="font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; color: var(--coral); font-weight:600; margin-bottom:1rem;">Numeros de Emergencia Brasil</div>
+    <div class="emerg-bar">
+      <div class="emerg-item">
+        <div class="e-label">Policia</div>
+        <div class="e-num">190</div>
+      </div>
+      <div class="emerg-item">
+        <div class="e-label">SAMU (Medicos)</div>
+        <div class="e-num">192</div>
+      </div>
+      <div class="emerg-item">
+        <div class="e-label">Bomberos</div>
+        <div class="e-num">193</div>
+      </div>
+      <div class="emerg-item">
+        <div class="e-label">Turista (Disque)</div>
+        <div class="e-num">1516</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
+```
